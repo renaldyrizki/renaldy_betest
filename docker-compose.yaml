@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  mongodb_renaldy_betest:
+    image: mongo:latest
+    container_name: mongodb_renaldy_betest
+    command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: db_renaldy_betest
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'host.docker.internal:27017'}]}) }" | mongosh --port 27017 --quiet
+    volumes:
+      - "mongo_data_renaldy_betest:/data/db"
+      - "mongo_config_renaldy_betest:/data/configdb"
+    networks:
+      - user_network
+
+  redis_renaldy_betest:
+    image: redis:latest
+    container_name: redis_renaldy_betest
+    ports:
+      - "6379:6379"
+    networks:
+      - user_network
+      
+  ms_renaldy_betest:
+    container_name: ms_renaldy_betest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      APP_PORT: 3000
+      DATABASE_URL: "mongodb://mongodb_renaldy_betest:27017/db_renaldy_betest"
+      JWT_SECRET: "rahasia"
+      JWT_EXPRESS_IN: "1d"
+      REDIS_HOST: "localhost"
+      REDIS_PORT: 6379
+      REDIS_EXPRESS_IN: 5
+    ports:
+      - 3000:3000
+    command: >
+      /bin/sh -c "npm run migrate && npm run start"
+    depends_on:
+      - mongodb_renaldy_betest
+      - redis_renaldy_betest
+    networks:
+      - user_network
+
+networks:
+  user_network:
+
+volumes:
+  mongo_data_renaldy_betest:
+  mongo_config_renaldy_betest:

@@ -1,0 +1,62 @@
+GET http://localhost:3000/api/health
+
+###
+
+POST http://localhost:3000/api/users
+Content-Type: application/json
+Accept: application/json
+
+{
+  "userName" : "renaldy",
+  "pin" : "123456",
+  "accountNumber" : "123456789012345",
+  "emailAddress" : "renaldy@gmail.com",
+  "identityNumber" : "1234567890123456"
+}
+
+###
+
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "userName" : "renaldy",
+  "pin" : "123456"
+}
+###
+
+GET http://localhost:3000/api/users/identity_number/1234567890123456
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZGJhMmE2MmE4NDM2NzgxNzBhYTQ3NyIsInVzZXJOYW1lIjoicmVuYWxkeTMiLCJlbWFpbEFkZHJlc3MiOiJyZW5hbGR5M0BnbWFpbC5jb20iLCJhY2NvdW50TnVtYmVyIjoiMTIzNDU2Nzg5MDEyMzQ1MyIsImlkZW50aXR5TnVtYmVyIjoiMTIzNDU2Nzg5MDEyMzQ1MyIsImlhdCI6MTcwODg5MzAyNCwiZXhwIjoxNzA4OTc5NDI0fQ.bsAH9vQ4bxDB3w49TL3cRfaEOKbnYLaanV_Xa4rDzWI
+###
+
+GET http://localhost:3000/api/users/account_number/1234567890123455
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZGI4YzYzNGFhY2Y1NmFjMTg2MWE0YSIsInVzZXJOYW1lIjoicmVuYWxkeTMiLCJlbWFpbEFkZHJlc3MiOiJyZW5hbGR5M0BnbWFpbC5jb20iLCJhY2NvdW50TnVtYmVyIjoiMTIzNDU2Nzg5MDEyMzQ1MyIsImlkZW50aXR5TnVtYmVyIjoiMTIzNDU2Nzg5MDEyMzQ1MyIsImlhdCI6MTcwODg4NzE1NiwiZXhwIjoxNzA4OTczNTU2fQ._ijy24-F0iFj3wDs5oq0Xx4oQiIc-onuB1fSCf-suZo
+###
+
+GET http://localhost:3000/api/users/me
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZGJhMmE2MmE4NDM2NzgxNzBhYTQ3NyIsInVzZXJOYW1lIjoicmVuYWxkeTMiLCJlbWFpbEFkZHJlc3MiOiJyZW5hbGR5M0BnbWFpbC5jb20iLCJhY2NvdW50TnVtYmVyIjoiMTIzNDU2Nzg5MDEyMzQ1MyIsImlkZW50aXR5TnVtYmVyIjoiMTIzNDU2Nzg5MDEyMzQ1MyIsImlhdCI6MTcwODg5MzAyNCwiZXhwIjoxNzA4OTc5NDI0fQ.bsAH9vQ4bxDB3w49TL3cRfaEOKbnYLaanV_Xa4rDzWI
+###
+
+PATCH http://localhost:3000/api/users/me
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZGM5MzFhMGYyZWJhZGY5ODg4ZTU1ZSIsInVzZXJOYW1lIjoicmVuYWxkeSIsImVtYWlsQWRkcmVzcyI6InJlbmFsZHlAZ21haWwuY29tIiwiYWNjb3VudE51bWJlciI6IjEyMzQ1Njc4OTAxMjM0NSIsImlkZW50aXR5TnVtYmVyIjoiMTIzNDU2Nzg5MDEyMzQ1NiIsImlhdCI6MTcwODk1NDQwMSwiZXhwIjoxNzA5MDQwODAxfQ.FJjwGqSiWr3Vm0AevsVeG5OAI0C2ISt4jrLRsdzTX3c
+
+{
+  "emailAddress": "renaldy-test@gmail.com"
+}
+
+
+###
+
+DELETE http://localhost:3000/api/users/me
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZGJhMjI2NzJmMTFhNzg2NzJjNWI0NiIsInVzZXJOYW1lIjoicmVuYWxkeTMiLCJlbWFpbEFkZHJlc3MiOiJyZW5hbGR5M0BnbWFpbC5jb20iLCJhY2NvdW50TnVtYmVyIjoiMTIzNDU2Nzg5MDEyMzQ1MyIsImlkZW50aXR5TnVtYmVyIjoiMTIzNDU2Nzg5MDEyMzQ1MyIsImlhdCI6MTcwODg5MjgxOSwiZXhwIjoxNzA4OTc5MjE5fQ.dfJQu8QZ_ttJxlsRm1lsVUrDf92tDC0aL0VcFWHFFM4
